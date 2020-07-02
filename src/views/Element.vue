@@ -1,15 +1,16 @@
 <template>
   <div class="element-single">
-    <section class="hero is-primary">
+    <section class="hero" v-bind:style="{backgroundColor: `#${element.cpkHexColor}`}">
       <div class="hero-body">
         <div class="container">
+          <h1 class="symbol">{{element.symbol}}</h1>
           <h1 class="title">
             {{ element.name }}
           </h1>
           <h2 class="subtitle ">
             <strong>Atomic Number:</strong> {{ element.atomicNumber }}
             <br>
-            <strong>Time:</strong> {{ element.time }}
+            <strong>Atomic Mass:</strong> {{ element.atomicMass }} amu
           </h2>
         </div>
       </div>
@@ -42,7 +43,7 @@ export default {
     // const elementID = Number(this.$route.params.id);
     // let element = this.elements.find(element => element.id === elementID);
     // this.element = element;
-    console.log(`test`)
+    // console.log(`test`)
     this.getData()
   },
   methods: {
@@ -54,15 +55,30 @@ export default {
         (element => {
           this.$set(this, "element", element)
         })
-        .bind(this)
+        .bind(this),
       )}
   }
 }
 </script>
 
 <style scoped>
-/* .hero-body {
+.hero {
+  /* background-color: '${bgColor}'; */
+  }
+.hero-body {
   width: 33%;
-  margin: 0;
-} */
+  margin-left: auto;
+  margin-right: auto;
+  border: 1rem solid black;
+  border-radius: 1rem;
+}
+  @media (max-width: 400px) {
+    .hero-body {
+      width: 100%;
+    }
+  }
+.symbol {
+  font-size: 5rem;
+  /* margin: 0; */
+}
 </style>

@@ -1,11 +1,11 @@
 <template>
   <div class="element-card">
-    <div class="card" :element='element'
-      :style="{backgroundImage: element.spectral_img}">
+    <div class="card" :element='element'>
       <div class="card-content">
-        <h2 class="is-size-4 has-text-weight-bold">{{element.name}}</h2>
+        <h2 class="is-size-4 has-text-weight-bold">{{element.symbol}}</h2>
         <div class="element-number">{{element.atomicNumber}}</div>
-        <div>{{element.symbol}}</div>
+        <h2 class="is-size-4 has-text-weight-bold">{{element.name}}</h2>
+
       </div>
     </div>
   </div>
@@ -15,23 +15,17 @@
 export default {
   props: [
     'element'
-  ],
-  //   created() {
-  //   this.getImg()
-  // },
-  // methods: {
-  //   getImg() {
-
-      
-  //   }
-  // }
+  ]
 }
 </script>
 
 <style lang="scss" scoped>
+  .element-card {
+    height: 3rem;
+  }
   .card {
     background-image: url('https://upload.wikimedia.org/wikipedia/commons/e/e4/Hydrogen_Spectra.jpg');
-    height: 100px;
+    height: 100%;
     width: 100%;
     background-position: center;
     background-size: cover;
@@ -44,7 +38,7 @@ export default {
     background-color: rgba(0, 0, 0, 0.25);
     top: 0;
     padding: 10px;
-    height: 100px;
+    height: 100%;
     width: 100%;
     span {
       font-size: 60px;
@@ -55,14 +49,14 @@ export default {
       right: 0;
     }
     h2 {
-      margin-top: 10px;
+      // margin-top: 10px;
     }
   }
   .element-number {
     // background-color: ghostwhite;
     color: ghostwhite;
-    font-size: 4em;
-    padding: 2px 10px;
+    font-size: 2em;
+    padding: 0 10px;
     position: absolute;
     top: 0;
     // left: 0;

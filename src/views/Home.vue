@@ -52,6 +52,12 @@ export default {
   .hero-body .title {
     font-size: 40px;
   }
+  @media (max-width: 400px) {
+    .hero .title {
+      font-size: 2rem;
+      height: 50%;
+  }
+}
   .button-block {
     text-align: center;
     margin-left: auto;
