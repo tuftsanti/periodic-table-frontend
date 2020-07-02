@@ -28,13 +28,13 @@ export default {
   components: {
     ElementList
     // HelloWorld
-  },
-    methods: {
-    // Log the user in
-    login() {
-      this.$auth.loginWithRedirect();
-    }
   }
+  //   methods: {
+  //   // Log the user in
+  //   login() {
+  //     this.$auth.loginWithRedirect();
+  //   }
+  // }
 }
 </script>
 

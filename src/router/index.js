@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-import { authGuard } from "../auth/authguard";
+// import { authGuard } from "../auth/authguard";
 
 Vue.use(VueRouter)
 
@@ -22,8 +22,8 @@ Vue.use(VueRouter)
   {
     path: '/element/:id',
     name: 'Element',
-    component: () => import(/* webpackChunkName: "about" */ '../views/Element.vue'),
-    beforeEnter: authGuard
+    component: () => import(/* webpackChunkName: "about" */ '../views/Element.vue')
+    // beforeEnter: authGuard
   }
 ]
 

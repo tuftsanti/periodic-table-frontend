@@ -46,9 +46,9 @@ export default {
   },
   methods: {
     async getData() {
-      const token = await this.$auth.getTokenSilently()
+      // const token = await this.$auth.getTokenSilently()
 
-      service.getElement(this.$route.params.id, token)
+      service.getElement(this.$route.params.id) //, token)
       .then (
         (element => {
           this.$set(this, "element", element)
