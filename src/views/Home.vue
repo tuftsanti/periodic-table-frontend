@@ -39,12 +39,15 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  .home {
+    background-color: gray;
+  }
   .hero {  
     text-align: center;
     background-image: url('https://www.philipharris.co.uk/media/1924/periodic-table-header-v2-min.png?anchor=center&mode=crop&width=1110&rnd=131931602780000000&quality=75');
     background-size: cover;
     background-position: center;
-    height: 150px;
+    height: 100%;
   }
   .hero-body .title {
     font-size: 40px;

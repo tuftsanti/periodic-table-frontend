@@ -1,11 +1,11 @@
 <template>
   <div class="elements container">
-    <h2 class="subtitle is-3">
+    <!-- <h2 class="subtitle is-3">
     Pick your favorite
-    </h2>
+    </h2> -->
     <div class="columns is-multiline">
-      <div v-for="element in elements" :element="element" :key="element.number" class="column is-one-quarter">
-        <router-link :to="'/element/' + element.number">
+      <div v-for="element in elements" :element="element" :key="element.atomicNumber" class="column is-full">
+        <router-link :to="'/element/' + element.atomicNumber">
           <ElementCard :element="element" />
         </router-link>
       </div>
@@ -45,5 +45,8 @@ export default {
   .element {
     margin-top: 100px;
     text-align: center;
+  }
+  .column {
+    padding: 6px
   }
 </style>

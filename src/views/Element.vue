@@ -7,7 +7,7 @@
             {{ element.name }}
           </h1>
           <h2 class="subtitle ">
-            <strong>Atomic Number:</strong> {{ element.number }}
+            <strong>Atomic Number:</strong> {{ element.atomicNumber }}
             <br>
             <strong>Time:</strong> {{ element.time }}
           </h2>
@@ -20,9 +20,9 @@
         <p class="is-size-5"><strong>Location:</strong> {{ element.location }}</p>
         <p class="is-size-5"><strong>Category:</strong> {{ element.category }}</p>
         <div class="element-images columns is-multiline has-text-centered">
-          <div v-for="image in element.images" :key="image.number" class="column is-one-third">
-            <img :src="image" :alt="element.name">
-          </div>
+
+            <img :src=element.spectral_img :alt="element.name">
+
         </div>
       </div>
     </section>
@@ -42,6 +42,7 @@ export default {
     // const elementID = Number(this.$route.params.id);
     // let element = this.elements.find(element => element.id === elementID);
     // this.element = element;
+    console.log(`test`)
     this.getData()
   },
   methods: {
