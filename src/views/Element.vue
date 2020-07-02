@@ -7,7 +7,7 @@
             {{ element.name }}
           </h1>
           <h2 class="subtitle ">
-            <strong>Date:</strong> {{ element.date }}
+            <strong>Atomic Number:</strong> {{ element.number }}
             <br>
             <strong>Time:</strong> {{ element.time }}
           </h2>
@@ -20,7 +20,7 @@
         <p class="is-size-5"><strong>Location:</strong> {{ element.location }}</p>
         <p class="is-size-5"><strong>Category:</strong> {{ element.category }}</p>
         <div class="element-images columns is-multiline has-text-centered">
-          <div v-for="image in element.images" :key="image.id" class="column is-one-third">
+          <div v-for="image in element.images" :key="image.number" class="column is-one-third">
             <img :src="image" :alt="element.name">
           </div>
         </div>
@@ -58,3 +58,10 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+/* .hero-body {
+  width: 33%;
+  margin: 0;
+} */
+</style>

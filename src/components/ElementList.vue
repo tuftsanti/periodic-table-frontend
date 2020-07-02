@@ -4,8 +4,8 @@
     Pick your favorite
     </h2>
     <div class="columns is-multiline">
-      <div v-for="element in elements" :element="element" :key="element.id" class="column is-one-quarter">
-        <router-link :to="'/element/' + element.id">
+      <div v-for="element in elements" :element="element" :key="element.number" class="column is-one-quarter">
+        <router-link :to="'/element/' + element.number">
           <ElementCard :element="element" />
         </router-link>
       </div>
