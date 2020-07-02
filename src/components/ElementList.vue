@@ -15,7 +15,7 @@
 
 <script>
 import ElementCard from '@/components/ElementCard';
-import service from '@/services/service.js'
+import getter from '@/services/getter.js'
 
 export default {
   name: 'ElementList',
@@ -33,7 +33,7 @@ export default {
   },
   methods: {
     async getData() {
-      service.getElements()
+      getter.getElements()
       .then((elements => {this.$set(this, 'elements', elements)})
       .bind(this)
       )

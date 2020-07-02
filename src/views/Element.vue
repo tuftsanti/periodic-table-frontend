@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import service from '@/services/service.js'
+import getter from '@/services/getter.js'
 export default {
   name: 'Element',
   data () {
@@ -48,7 +48,7 @@ export default {
     async getData() {
       // const token = await this.$auth.getTokenSilently()
 
-      service.getElement(this.$route.params.id) //, token)
+      getter.getElement(this.$route.params.id) //, token)
       .then (
         (element => {
           this.$set(this, "element", element)
