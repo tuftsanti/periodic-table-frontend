@@ -2,9 +2,8 @@
   <div class="element-card">
     <div class="card" :element='element'>
       <div class="card-content">
-        <h2 class="is-size-4 has-text-weight-bold">{{element.symbol}}</h2>
         <div class="element-number">{{element.atomicNumber}}</div>
-        <h2 class="is-size-4 has-text-weight-bold">{{element.name}}</h2>
+        <h2 class="is-size-4 has-text-weight-bold">{{element.symbol}} - {{element.name}}</h2>
 
       </div>
     </div>
