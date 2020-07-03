@@ -1,5 +1,5 @@
 <template>
-<nav class="navbar container" role="navigation" aria-label="main navigation">
+<nav class="navbar is-fixed-top container" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
     <a class="navbar-item" href="/">
       <strong class="is-size-4">The Periodic Table</strong>
@@ -14,6 +14,7 @@
     <div class="navbar-start">
       <router-link to="/" class="navbar-item">Home</router-link>
       <router-link to="/about" class="navbar-item">About</router-link>
+      <router-link @click.native="randomLink()" :to="randomLink()" class="navbar-item">?Find a Random Element?</router-link>
     </div>
     <div class="navbar-end">
       <div class="navbar-item">
@@ -34,6 +35,7 @@
 <script>
 export default {
     name: 'Nav',
+  ////// AUTH
   //   methods: {
   //   // Log the user in
   //   login() {
@@ -46,6 +48,12 @@ export default {
   //     });
   //   }
   // }
+   methods:{
+     randomLink(){
+          let rnd=Math.floor(Math.random() * 118) + 1;
+          return '/element/'+rnd+''
+          }
+      }
 }
 </script>
 <style lang="scss" scoped>

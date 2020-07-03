@@ -72,11 +72,11 @@ export default {
   border: 1rem solid black;
   border-radius: 1rem;
 }
-  @media (max-width: 400px) {
-    .hero-body {
-      width: 100%;
-    }
+@media (max-width: 400px) {
+  .hero-body {
+    width: 100%;
   }
+}
 .symbol {
   font-size: 5rem;
   /* margin: 0; */

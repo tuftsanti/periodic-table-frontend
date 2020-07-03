@@ -2,8 +2,8 @@
   <div class="element-card">
     <div class="card" :element='element'>
       <div class="card-content">
-        <div class="element-number">{{element.atomicNumber}}</div>
-        <h2 class="is-size-4 has-text-weight-bold">{{element.symbol}} - {{element.name}}</h2>
+        <div class="element-number is-size-3-mobile">{{element.atomicNumber}}</div>
+        <h2 class="words is-size-3 is-size-4-mobile has-text-weight-bold">{{element.symbol}} - {{element.name}}</h2>
 
       </div>
     </div>
@@ -49,6 +49,8 @@ export default {
     }
     h2 {
       // margin-top: 10px;
+      // height: 100%;
+      // width: 40%
     }
   }
   .element-number {
@@ -60,4 +62,29 @@ export default {
     top: 0;
     // left: 0;
   }
+  .words {
+    color: ghostwhite;
+    // font-size: 1em;
+    padding: 0 20px;
+    text-align: center;
+    width: 30%;
+    margin: auto;
+  }
+  @media (max-width: 500px) {
+  .words {
+    // background-color: ghostwhite;
+    color: ghostwhite;
+    font-size: 2em;
+    padding: 0 20px;
+    width: 80%;
+    position: absolute;
+    // top: 0;
+    right: 0;
+  }
+  }
+  //   @media (max-width: 500px) {
+  //   .element-number {
+  //    font-size: 1.7rem;
+  //   }
+  // }
 </style>

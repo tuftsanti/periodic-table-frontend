@@ -7,24 +7,27 @@
     <input type="text" placeholder="Search by name" v-model="elementNameSearch"/>
   </div>
     <div class="columns is-multiline">
-      <div v-for="element in searched" :element="element" :key="element.atomicNumber" class="column is-full">
+      <div v-for="element in textsearch" :element="element" :key="element.atomicNumber" class="column is-full">
         <router-link :to="'/element/' + element.atomicNumber">
           <ElementCard :element="element" />
         </router-link>
       </div>
     </div>
+    <go-top></go-top>
   </div>
 </template>
 
 <script>
 import ElementCard from '@/components/ElementCard';
 import getter from '@/services/getter.js';
-import axios from 'axios'
+import axios from 'axios';
+import GoTop from '@inotom/vue-go-top';
 
 export default {
   name: 'ElementList',
   components : {
-    ElementCard
+    ElementCard,
+    GoTop
   },
   data () {
     return {
@@ -55,7 +58,7 @@ export default {
       .catch(error => console.log(`Error searching: \n ${error}`))
   },
   computed: {
-    searched: function () {
+    textsearch: function () {
       let result = this.elementFeed
       let elementNameSearch = this.elementNameSearch
       if (!elementNameSearch) {
