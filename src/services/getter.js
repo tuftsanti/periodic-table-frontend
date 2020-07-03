@@ -11,4 +11,7 @@ export default {
     // });
     return res.data;
   }
+  // async searchByName(name) {
+  //   const res = await axios.get()
+  // }
 }

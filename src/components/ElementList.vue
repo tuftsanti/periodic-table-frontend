@@ -3,8 +3,11 @@
     <!-- <h2 class="subtitle is-3">
     Pick your favorite
     </h2> -->
+  <div class="searchName">
+    <input type="text" placeholder="Search by name" v-model="elementNameSearch"/>
+  </div>
     <div class="columns is-multiline">
-      <div v-for="element in elements" :element="element" :key="element.atomicNumber" class="column is-full">
+      <div v-for="element in filtered" :element="element" :key="element.atomicNumber" class="column is-full">
         <router-link :to="'/element/' + element.atomicNumber">
           <ElementCard :element="element" />
         </router-link>
@@ -15,7 +18,8 @@
 
 <script>
 import ElementCard from '@/components/ElementCard';
-import getter from '@/services/getter.js'
+import getter from '@/services/getter.js';
+import axios from 'axios'
 
 export default {
   name: 'ElementList',
@@ -25,7 +29,9 @@ export default {
   data () {
     return {
       element: {},
-      elements: []
+      elements: [],
+      elementNameSearch: '',
+      elementFeed: null
     }  
   },
   created() {
@@ -38,6 +44,30 @@ export default {
       .bind(this)
       )
     }
+  },
+  mounted() {
+    axios
+      .get(`https://neelpatel05.pythonanywhere.com/`)
+      .then(response => {
+        this.elementFeed = response.data
+      })
+      .catch(error => console.log(`Error searching: \n ${error}`))
+  },
+  computed: {
+    filtered: function () {
+      let result = this.elementFeed
+      let elementNameSearch = this.elementNameSearch
+      if (!elementNameSearch) {
+        return result
+      }
+      const searchString = elementNameSearch.trim().toLowerCase()
+      result = result.filter(function(item) {
+        if (item.name.toLowerCase().indexOf(searchString) !== -1) {
+          return item
+        }
+      }) 
+      return result
+    }
   }
 }
 </script>
@@ -48,5 +78,8 @@ export default {
   }
   .column {
     padding: 6px
+  }
+  .searchName {
+    padding: 2rem;
   }
 </style>
