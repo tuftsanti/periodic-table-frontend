@@ -7,7 +7,7 @@
     <input type="text" placeholder="Search by name" v-model="elementNameSearch"/>
   </div>
     <div class="columns is-multiline">
-      <div v-for="element in filtered" :element="element" :key="element.atomicNumber" class="column is-full">
+      <div v-for="element in searched" :element="element" :key="element.atomicNumber" class="column is-full">
         <router-link :to="'/element/' + element.atomicNumber">
           <ElementCard :element="element" />
         </router-link>
@@ -47,14 +47,15 @@ export default {
   },
   mounted() {
     axios
-      .get(`https://neelpatel05.pythonanywhere.com/`)
+      // .get(`https://neelpatel05.pythonanywhere.com/`)
+      .get(`http://localhost:8000/`)
       .then(response => {
         this.elementFeed = response.data
       })
       .catch(error => console.log(`Error searching: \n ${error}`))
   },
   computed: {
-    filtered: function () {
+    searched: function () {
       let result = this.elementFeed
       let elementNameSearch = this.elementNameSearch
       if (!elementNameSearch) {
