@@ -51,7 +51,8 @@ export default {
   mounted() {
     axios
       // .get(`https://neelpatel05.pythonanywhere.com/`)
-      .get(`http://localhost:8000/`)
+      // .get(`http://localhost:8000/`)
+      .get(`https://andys-periodic-table.herokuapp.com/`)
       .then(response => {
         this.elementFeed = response.data
       })
