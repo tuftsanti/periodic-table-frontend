@@ -1,20 +1,22 @@
 <template>
+<!-- <div> -->
 <nav class="navbar is-fixed-top container" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
     <a class="navbar-item" href="/">
-      <strong class="is-size-4">The Periodic Table</strong>
+      <!-- <strong class="is-size-4">The Periodic Table</strong> -->
+      <img src="../../assets/periodic-table.png" alt="Bulma: Free, open source, and modern CSS framework based on Flexbox" width="80" height="28">
     </a>
-    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+    <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navMenu" @click="menuIsShown = !menuIsShown" >
       <span aria-hidden="true"></span>
       <span aria-hidden="true"></span>
       <span aria-hidden="true"></span>
     </a>
   </div>
-  <div id="navbar" class="navbar-menu">
+  <div id="navMenu" class="navbar-menu" v-bind:class="{'is-active':menuIsShown }">
     <div class="navbar-start">
       <router-link to="/" class="navbar-item">Home</router-link>
       <router-link to="/about" class="navbar-item">About</router-link>
-      <router-link @click.native="randomLink()" :to="randomLink()" class="navbar-item">?Find a Random Element?</router-link>
+      <router-link @click.native="randomLink()" :to="randomLink()" class="navbar-item" >❓ Random Element ❓</router-link>
     </div>
     <div class="navbar-end">
       <div class="navbar-item">
@@ -32,9 +34,20 @@
   </div>
 </nav>
 </template>
+
 <script>
 export default {
     name: 'Nav',
+    data () {
+      return {
+        menuIsShown: false
+      }  
+    },
+    watch: {
+      '$route' () {
+        this.menuIsShown = false
+      }
+    },
   ////// AUTH
   //   methods: {
   //   // Log the user in
@@ -56,6 +69,7 @@ export default {
       }
 }
 </script>
+
 <style lang="scss" scoped>
   nav {
     // margin-top: 25px;

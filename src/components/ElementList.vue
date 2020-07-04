@@ -6,8 +6,10 @@
   <div class="searchName">
     <input type="text" placeholder="Search by name" v-model="elementNameSearch"/>
   </div>
+  <div class="dropdown-list"></div>
+  <!-- <v-select placeholder="Sort by phase" :options="['solid', 'liquid', 'gas']" v-model="elementPhaseSearch"></v-select> -->
     <div class="columns is-multiline">
-      <div v-for="element in textsearch" :element="element" :key="element.atomicNumber" class="column is-full">
+      <div v-for="element in textSearch" :element="element" :key="element.atomicNumber" class="column is-full">
         <router-link :to="'/element/' + element.atomicNumber">
           <ElementCard :element="element" />
         </router-link>
@@ -18,10 +20,15 @@
 </template>
 
 <script>
+import Vue from 'vue'
 import ElementCard from '@/components/ElementCard';
 import getter from '@/services/getter.js';
 import axios from 'axios';
 import GoTop from '@inotom/vue-go-top';
+
+import vSelect from 'vue-select'
+// import 'vue-select/dist/vue-select.css';
+Vue.component('v-select', vSelect)
 
 export default {
   name: 'ElementList',
@@ -59,7 +66,7 @@ export default {
       .catch(error => console.log(`Error searching: \n ${error}`))
   },
   computed: {
-    textsearch: function () {
+    textSearch: function () {
       let result = this.elementFeed
       let elementNameSearch = this.elementNameSearch
       if (!elementNameSearch) {
@@ -68,6 +75,21 @@ export default {
       const searchString = elementNameSearch.trim().toLowerCase()
       result = result.filter(function(item) {
         if (item.name.toLowerCase().indexOf(searchString) !== -1) {
+          return item
+        }
+      }) 
+      return result
+    },
+      phaseSearch: function () {
+      let result = this.elementFeed
+      let elementPhaseSearch = this.elementPhaseSearch
+      if (!elementPhaseSearch) {
+        return result
+      }
+      // const searchString = elementPhaseSearch.trim().toLowerCase()
+      console.log(elementPhaseSearch)
+      result = result.filter(function(item) {
+        if (item.standardState.toLowerCase().indexOf(elementPhaseSearch) !== -1) {
           return item
         }
       }) 

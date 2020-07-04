@@ -6,33 +6,15 @@
           <h1 class="title">
             The Periodic Table of Elements       
           </h1>
-                <!-- <div class="button-block">
-              <button v-if="!$auth.isAuthenticated" @click="login" class="button is-xl is-dark">Sign Up to Browse Events</button>
-              <h3 v-if="$auth.isAuthenticated" class="is-size-3 has-background-dark welcome">Welcome, {{ $auth.user.name }}!</h3>
-            </div> -->
         </div>
       </div>
     </section>
-    <ElementList/>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-// import HelloWorld from '@/components/HelloWorld.vue'
-import ElementList from "../components/ElementList"
 export default {
-  name: 'Home',
-  components: {
-    ElementList
-    // HelloWorld
-  }
-  //   methods: {
-  //   // Log the user in
-  //   login() {
-  //     this.$auth.loginWithRedirect();
-  //   }
-  // }
+  name: 'Titlebar'
 }
 </script>
 

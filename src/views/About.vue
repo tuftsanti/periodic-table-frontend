@@ -1,5 +1,16 @@
 <template>
   <div class="about">
-    <h1>This is an about page</h1>
+    <Titlebar/>
+    <h1>About the app</h1>
   </div>
 </template>
+
+<script>
+import Titlebar from "./Titlebar"
+export default {
+  name: 'About',
+  components: {
+    Titlebar
+  }
+}
+</script>

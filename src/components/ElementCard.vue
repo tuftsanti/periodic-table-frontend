@@ -3,7 +3,7 @@
     <div class="card" :element='element'>
       <div class="card-content">
         <div class="element-number is-size-3-mobile">{{element.atomicNumber}}</div>
-        <h2 class="words is-size-3 is-size-4-mobile has-text-weight-bold">{{element.symbol}} - {{element.name}}</h2>
+        <span class="words is-size-3 is-size-4-mobile has-text-weight-bold">{{element.symbol}} - {{element.name}}</span>
 
       </div>
     </div>
@@ -31,6 +31,7 @@ export default {
     text-align: center;
   }
   .card-content {
+    display: flex;
     padding-top: 50px;
     position: absolute;
     color: #FFF;
@@ -44,7 +45,7 @@ export default {
       text-align: center;
       width: 100%;
       position: absolute;
-      bottom: 4rem;
+      bottom: 0rem;
       right: 0;
     }
     h2 {
@@ -72,14 +73,12 @@ export default {
   }
   @media (max-width: 500px) {
   .words {
-    // background-color: ghostwhite;
-    color: ghostwhite;
     font-size: 2em;
     padding: 0 20px;
-    width: 80%;
+    width: 50%;
     position: absolute;
-    // top: 0;
-    right: 0;
+    top: .5rem;
+    right: 0rem;
   }
   }
   //   @media (max-width: 500px) {
