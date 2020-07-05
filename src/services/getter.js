@@ -1,10 +1,12 @@
 import axios from "axios"
 
 export default {
-  async getElements() {
+  async getElements(sortBy) {
     // const res = await axios.get("http://localhost:8000/elements");
     const res = await axios.get("https://andys-periodic-table.herokuapp.com/elements");
-    return res.data;
+    console.log(sortBy)
+    let sorted = res.data
+    return sorted;
   },
   async getElement(elementNumber) { //, token) {
     // const res = await axios.get("http://localhost:8000/elements/" + elementNumber) //, {

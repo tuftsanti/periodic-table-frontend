@@ -41,7 +41,8 @@ export default {
       element: {},
       elements: [],
       elementNameSearch: '',
-      elementFeed: null
+      elementFeed: null,
+      sortBy: 'alpha'
     }  
   },
   created() {
@@ -49,7 +50,8 @@ export default {
   },
   methods: {
     async getData() {
-      getter.getElements()
+      // console.log(this.sortBy)
+      getter.getElements(this.sortBy)
       .then((elements => {this.$set(this, 'elements', elements)})
       .bind(this)
       )
@@ -78,7 +80,10 @@ export default {
           return item
         }
       }) 
-      return result
+      console.log(this.sortBy)
+      // if (this.sortBy == 'alpha') {
+        return result
+      // }
     },
       phaseSearch: function () {
       let result = this.elementFeed
