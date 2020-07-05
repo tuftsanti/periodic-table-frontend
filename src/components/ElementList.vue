@@ -1,13 +1,22 @@
 <template>
   <div class="elements container">
-    <!-- <h2 class="subtitle is-3">
-    Pick your favorite
-    </h2> -->
-  <div class="searchName">
-    <input type="text" placeholder="Search by name" v-model="elementNameSearch"/>
-  </div>
-  <div class="dropdown-list"></div>
-  <!-- <v-select placeholder="Sort by phase" :options="['solid', 'liquid', 'gas']" v-model="elementPhaseSearch"></v-select> -->
+    <div class="searchName">
+      <input type="text" placeholder="Search by name" v-model="filter"/>
+    </div>
+    <div class="dropdown-list"></div>
+    <button @click="sortit">Sort by name</button>
+
+    <el-col :lg="6" :md="6" :sm="6" :xs="24">
+      <el-select v-model="sort" placeholder="Sort by">
+        <el-option
+          :key="item in options"
+          :label="item.label"
+          :value="item.value">
+        </el-option>
+      </el-select>
+    </el-col>
+
+    <!-- <v-select placeholder="Sort by phase" :options="['solid', 'liquid', 'gas']" v-model="elementPhaseSearch"></v-select> -->
     <div class="columns is-multiline">
       <div v-for="element in textSearch" :element="element" :key="element.atomicNumber" class="column is-full">
         <router-link :to="'/element/' + element.atomicNumber">
@@ -29,6 +38,7 @@ import GoTop from '@inotom/vue-go-top';
 import vSelect from 'vue-select'
 // import 'vue-select/dist/vue-select.css';
 Vue.component('v-select', vSelect)
+Vue.config.delimiters = ['${', '}'];
 
 export default {
   name: 'ElementList',
@@ -41,11 +51,19 @@ export default {
       element: {},
       elements: [],
       elementNameSearch: '',
-      elementFeed: null
+      elementFeed: null,
+      searchType: "textSearch()",
+      filter: '',
+      sort: '',
+      options: [
+        { label: 'Default', value: 'none' },
+        { label: 'Alphabetically', value: 'Alphabetically' },
+      ]
     }  
   },
   created() {
     this.getData()
+    // this.textSearch()
   },
   methods: {
     async getData() {
@@ -53,7 +71,39 @@ export default {
       .then((elements => {this.$set(this, 'elements', elements)})
       .bind(this)
       )
-    }
+    },
+    // textSearch() {
+    //   let result = this.elementFeed
+    //   let elementNameSearch = this.elementNameSearch
+    //   if (!elementNameSearch) {
+    //     return result
+    //   }
+    //   const searchString = elementNameSearch.trim().toLowerCase()
+    //   result = result.filter(function(item) {
+    //     if (item.name.toLowerCase().indexOf(searchString) !== -1) {
+    //       return item
+    //     }
+    //   }) 
+    //   return result
+    // },
+    // sortit() {
+    //   // console.log(this.elements)
+    //   this.elements.sort(this.sortAlphaNum);
+    //   // console.log(this.elements)
+    // },
+    // sortAlphaNum(a,b) {
+    //   let regexAlpha = /[^a-zA-Z]/g;
+    //   let regexNumber = /[^0-9]/g;
+    //   let aA = a.name.replace(regexAlpha, "");
+    //   let bA = b.name.replace(regexAlpha, "");
+    //   if (aA === bA) {
+    //       let aN = parseInt(a.name.replace(regexNumber, ""), 10);
+    //       let bN = parseInt(b.name.replace(regexNumber, ""), 10);
+    //       return aN === bN ? 0 : aN > bN ? 1 : -1;
+    //   } else {
+    //       return aA > bA ? 1 : -1;
+    //   }
+    // }
   },
   mounted() {
     axios
@@ -66,35 +116,53 @@ export default {
       .catch(error => console.log(`Error searching: \n ${error}`))
   },
   computed: {
-    textSearch: function () {
-      let result = this.elementFeed
-      let elementNameSearch = this.elementNameSearch
-      if (!elementNameSearch) {
-        return result
+    textSearch() {
+      let elements = this.elements.filter((element) => {
+        return element.name.toLowerCase().includes(this.filter.toLowerCase())
+      })
+      if (this.sort == 'Alphabetically') {
+        return elements.sort(function (a,b) {
+          return a.name - b.name
+        })
+      } else {
+        return elements
       }
-      const searchString = elementNameSearch.trim().toLowerCase()
-      result = result.filter(function(item) {
-        if (item.name.toLowerCase().indexOf(searchString) !== -1) {
-          return item
-        }
-      }) 
-      return result
     },
-      phaseSearch: function () {
-      let result = this.elementFeed
-      let elementPhaseSearch = this.elementPhaseSearch
-      if (!elementPhaseSearch) {
-        return result
-      }
-      // const searchString = elementPhaseSearch.trim().toLowerCase()
-      console.log(elementPhaseSearch)
-      result = result.filter(function(item) {
-        if (item.standardState.toLowerCase().indexOf(elementPhaseSearch) !== -1) {
-          return item
-        }
-      }) 
-      return result
-    }
+    // textSearch() {
+    //   let result = this.elementFeed
+    //   let elementNameSearch = this.elementNameSearch
+    //   if (!elementNameSearch) {
+    //     return result
+    //   }
+    //   const searchString = elementNameSearch.trim().toLowerCase()
+    //   result = result.filter(function(item) {
+    //     if (item.name.toLowerCase().indexOf(searchString) !== -1) {
+    //       return item
+    //     }
+    //   }) 
+    //   return result
+    // },
+    // sortByName: function () {
+    //   let result = this.elementFeed
+    //   return result.sort((a,b) => {
+    //     a[this.name] < b[this.name]
+    //   })
+    // },
+    // phaseSearch: function () {
+    // let result = this.elementFeed
+    // let elementPhaseSearch = this.elementPhaseSearch
+    // if (!elementPhaseSearch) {
+    //   return result
+    // }
+    // // const searchString = elementPhaseSearch.trim().toLowerCase()
+    // console.log(elementPhaseSearch)
+    // result = result.filter(function(item) {
+    //   if (item.standardState.toLowerCase().indexOf(elementPhaseSearch) !== -1) {
+    //     return item
+    //   }
+    // }) 
+    // return result
+    // }
   }
 }
 </script>
