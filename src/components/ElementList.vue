@@ -46,11 +46,11 @@ export default {
     }  
   },
   created() {
-    this.getData()
+    this.getData(this.sortBy)
   },
   methods: {
-    async getData() {
-      // console.log(this.sortBy)
+    async getData(sortBy) {
+      console.log(sortBy)
       getter.getElements(this.sortBy)
       .then((elements => {this.$set(this, 'elements', elements)})
       .bind(this)
