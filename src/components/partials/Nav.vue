@@ -4,7 +4,7 @@
   <div class="navbar-brand">
     <a class="navbar-item" href="/">
       <!-- <strong class="is-size-4">The Periodic Table</strong> -->
-      <img src="../../assets/periodic-table.png" alt="Bulma: Free, open source, and modern CSS framework based on Flexbox" width="80" height="28">
+      <img src="../../assets/periodic-table.png" alt="Periodic Table" width="80" height="28">
     </a>
     <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navMenu" @click="menuIsShown = !menuIsShown" >
       <span aria-hidden="true"></span>
@@ -81,6 +81,16 @@ export default {
       &.router-link-exact-active {
         color: orange;
       }
+    }
+  }
+  .is-active {  
+    width: 25%;
+    position: absolute;
+    right: 0;
+  }
+  @media (max-width: 400px) {
+    .is-active {  
+       width: 65%;
     }
   }
 </style>
