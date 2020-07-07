@@ -128,15 +128,15 @@ export default {
       } else {
         return elements
       }
-      const searchString = elementNameSearch.trim().toLowerCase()
-      result = result.filter(function(item) {
-        if (item.name.toLowerCase().indexOf(searchString) !== -1) {
-          return item
-        }
-      }) 
-      console.log(this.sortBy)
+      // let searchString = this.elementNameSearch.trim().toLowerCase()
+      // let result = result.filter(function(item) {
+      //   if (item.name.toLowerCase().indexOf(searchString) !== -1) {
+      //     return item
+      //   }
+      // }) 
+      // console.log(this.sortBy)
       // if (this.sortBy == 'alpha') {
-        return result
+        // return result
       // }
     },
     // textSearch() {
