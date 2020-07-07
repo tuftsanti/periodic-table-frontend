@@ -2,13 +2,14 @@ import axios from "axios"
 
 export default {
   async getElements(sortBy) {
-    // const res = await axios.get("http://localhost:8000/elements");
-    const res = await axios.get("https://andys-periodic-table.herokuapp.com/elements");
+    const res = await axios.get("http://localhost:8000/elements");
+    // const res = await axios.get("https://andys-periodic-table.herokuapp.com/elements");
     console.log(sortBy)
     let sorted = res.data
-    console.log(sorted)
+    // console.log(sorted)
     /////// TRYING TO SORT IN GETTER?
     // console.log(sorted)
+
     // function sortAlphaNum(a,b) {
     //   let regexAlpha = /[^a-zA-Z]/g;
     //   let regexNumber = /[^0-9]/g;
@@ -22,14 +23,24 @@ export default {
     //       return aA > bA ? 1 : -1;
     //   }
     // }
-    // const resort = sorted.sort(sortAlphaNum);
-    // console.log(sorted)
+    // if (sortBy== "alpha") {
+    //   sorted = sorted.sort(sortAlphaNum);
+    //   console.log(sorted)
+    // }
 
+    // function sortNumber(a,b) {
+    //   return a.atomicNumber < b.atomicNumber ? 1 : -1;
+    // }
+    // const sorted = elements.sort(sortAlpha)
+    // sorted.sort(sortNumber)
+    // sorted.reverse()
     return sorted;
+    // return resort;
+
   },
   async getElement(elementNumber) { //, token) {
-    // const res = await axios.get("http://localhost:8000/elements/" + elementNumber) //, {
-    const res = await axios.get("https://andys-periodic-table.herokuapp.com/elements/" + elementNumber) //, {
+    const res = await axios.get("http://localhost:8000/elements/" + elementNumber) //, {
+    // const res = await axios.get("https://andys-periodic-table.herokuapp.com/elements/" + elementNumber) //, {
     //     headers: {Authorization: `Bearer ${token}`}
     // });
     

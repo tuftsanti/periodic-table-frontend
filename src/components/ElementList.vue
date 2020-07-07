@@ -6,9 +6,12 @@
   <div class="searchName">
     <input type="text" placeholder="Search by name" v-model="elementNameSearch"/>
   </div>
-  <!-- <button @click="sortByName">
+  <button @click="sortByName">
     Sort By Name
-  </button> -->
+  </button>
+  <button @click="reverseIt">
+    Reverse list
+  </button>
   <div class="dropdown-list"></div>
   <!-- <v-select placeholder="Sort by phase" :options="['solid', 'liquid', 'gas']" v-model="elementPhaseSearch"></v-select> -->
     <div class="columns is-multiline">
@@ -45,7 +48,8 @@ export default {
       elements: [],
       elementNameSearch: '',
       elementFeed: null,
-      // sortBy: 'alpha'
+      sortBy: 'alpha',
+      // searcher: textSearch()
     }  
   },
   created() {
@@ -59,30 +63,36 @@ export default {
       .bind(this)
       )
     },
-    // sortByName() {
-    //   this.elements.sort(this.sortAlpha);
-    // },
-    // sortAlpha(a,b) {
-      // var reA = /[^a-zA-Z]/g;
-      // var reN = /[^0-9]/g;
-      // var aA = a.name.replace(reA, "");
-      // var bA = b.name.replace(reA, "");
-      // if(aA === bA) {
-      //     var aN = parseInt(a.name.replace(reN, ""), 10);
-      //     var bN = parseInt(b.name.replace(reN, ""), 10);
-      //     return aN === bN ? 0 : aN > bN ? 1 : -1;
-      // } else {
-      //     return aA > bA ? 1 : -1;
-      // }
+    sortByName() {
+      this.elements.sort(this.sortAlpha);
+    },
+    sortAlpha(a,b) {
+      var reA = /[^a-zA-Z]/g;
+      var reN = /[^0-9]/g;
+      var aA = a.name.replace(reA, "");
+      var bA = b.name.replace(reA, "");
+      if(aA === bA) {
+          var aN = parseInt(a.name.replace(reN, ""), 10);
+          var bN = parseInt(b.name.replace(reN, ""), 10);
+          return aN === bN ? 0 : aN > bN ? 1 : -1;
+      } else {
+          return aA > bA ? 1 : -1;
+      }
     // sortAlpha() {
     //   return
-    // }
+    },
+    sortNumber(a,b) {
+      return a.atomicNumber > b.atomicNumber ? 1 : -1;
+    },
+    reverseIt() {
+      this.elements.reverse();
+    },
   },
   mounted() {
     axios
       // .get(`https://neelpatel05.pythonanywhere.com/`)
-      // .get(`http://localhost:8000/`)
-      .get(`https://andys-periodic-table.herokuapp.com/`)
+      .get(`http://localhost:8000/`)
+      // .get(`https://andys-periodic-table.herokuapp.com/`)
       .then(response => {
         this.elementFeed = response.data
       })
@@ -100,7 +110,10 @@ export default {
         if (item.name.toLowerCase().indexOf(searchString) !== -1) {
           return item
         }
-      }) 
+      })
+
+      // result = result.sort(this.sortNumber())
+
       console.log(this.sortBy)
       // if (this.sortBy == 'alpha') {
         return result
