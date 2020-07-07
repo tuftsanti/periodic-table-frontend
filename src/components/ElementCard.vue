@@ -3,7 +3,7 @@
     <div class="card" :element='element'>
       <div class="card-content">
         <div class="element-number is-size-3-mobile">{{element.atomicNumber}}</div>
-        <span class="words is-size-3 is-size-4-mobile has-text-weight-bold">{{element.symbol}} - {{element.name}}</span>
+        <div class="words is-size-4 is-size-4-mobile has-text-weight-bold">{{element.symbol}} - {{element.name}}</div>
 
       </div>
     </div>
@@ -40,19 +40,14 @@ export default {
     padding: 10px;
     height: 100%;
     width: 100%;
-    span {
-      font-size: 60px;
-      text-align: center;
-      width: 100%;
-      position: absolute;
-      bottom: 0rem;
-      right: 0;
-    }
-    h2 {
-      // margin-top: 10px;
-      // height: 100%;
-      // width: 40%
-    }
+    // span {
+    //   font-size: 60px;
+    //   text-align: center;
+    //   width: 100%;
+    //   position: absolute;
+    //   bottom: 0rem;
+    //   right: 0;
+    // }
   }
   .element-number {
     // background-color: ghostwhite;
@@ -66,19 +61,20 @@ export default {
   .words {
     color: ghostwhite;
     // font-size: 1em;
-    padding: 0 20px;
+    padding: auto 20px;
     text-align: center;
-    width: 30%;
+    width: 50%;
     margin: auto;
   }
   @media (max-width: 500px) {
   .words {
     font-size: 2em;
-    padding: 0 20px;
-    width: 50%;
+    // padding: 0 20px;
+    width: 90%;
     position: absolute;
     top: .5rem;
-    right: 0rem;
+    right: 1rem;
+    text-align: right;
   }
   }
   //   @media (max-width: 500px) {
