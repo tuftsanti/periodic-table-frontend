@@ -66,8 +66,9 @@ export default {
     // this.textSearch()
   },
   methods: {
-    async getData() {
-      getter.getElements()
+    async getData(sortBy) {
+      console.log(sortBy)
+      getter.getElements(this.sortBy)
       .then((elements => {this.$set(this, 'elements', elements)})
       .bind(this)
       )
@@ -127,6 +128,16 @@ export default {
       } else {
         return elements
       }
+      const searchString = elementNameSearch.trim().toLowerCase()
+      result = result.filter(function(item) {
+        if (item.name.toLowerCase().indexOf(searchString) !== -1) {
+          return item
+        }
+      }) 
+      console.log(this.sortBy)
+      // if (this.sortBy == 'alpha') {
+        return result
+      // }
     },
     // textSearch() {
     //   let result = this.elementFeed

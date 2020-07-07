@@ -88,11 +88,13 @@ export default {
 </script>
 
 <style scoped>
+.element-single {
+  background-color: gray;
+}
 .hero {
   width: 366px;
   height: 366px;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 20px auto;
   border: 1rem solid black;
   border-radius: 1rem;
 }
@@ -111,6 +113,7 @@ export default {
 .table {
   width: 90%;
   margin: auto;
+  background-color: ghostwhite;
 }
 @media (max-width: 400px) {
   .hero {

@@ -55,8 +55,8 @@ export default {
     .hero .title {
       font-size: 2rem;
       height: 50%;
+    }
   }
-}
   .button-block {
     text-align: center;
     margin-left: auto;
