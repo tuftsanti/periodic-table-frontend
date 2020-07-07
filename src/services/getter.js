@@ -6,7 +6,7 @@ export default {
     const res = await axios.get("https://andys-periodic-table.herokuapp.com/elements");
     console.log(sortBy)
     let sorted = res.data
-
+    console.log(sorted)
     /////// TRYING TO SORT IN GETTER?
     // console.log(sorted)
     // function sortAlphaNum(a,b) {

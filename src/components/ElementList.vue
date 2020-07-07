@@ -6,6 +6,9 @@
   <div class="searchName">
     <input type="text" placeholder="Search by name" v-model="elementNameSearch"/>
   </div>
+  <!-- <button @click="sortByName">
+    Sort By Name
+  </button> -->
   <div class="dropdown-list"></div>
   <!-- <v-select placeholder="Sort by phase" :options="['solid', 'liquid', 'gas']" v-model="elementPhaseSearch"></v-select> -->
     <div class="columns is-multiline">
@@ -42,7 +45,7 @@ export default {
       elements: [],
       elementNameSearch: '',
       elementFeed: null,
-      sortBy: 'alpha'
+      // sortBy: 'alpha'
     }  
   },
   created() {
@@ -55,7 +58,25 @@ export default {
       .then((elements => {this.$set(this, 'elements', elements)})
       .bind(this)
       )
-    }
+    },
+    // sortByName() {
+    //   this.elements.sort(this.sortAlpha);
+    // },
+    // sortAlpha(a,b) {
+      // var reA = /[^a-zA-Z]/g;
+      // var reN = /[^0-9]/g;
+      // var aA = a.name.replace(reA, "");
+      // var bA = b.name.replace(reA, "");
+      // if(aA === bA) {
+      //     var aN = parseInt(a.name.replace(reN, ""), 10);
+      //     var bN = parseInt(b.name.replace(reN, ""), 10);
+      //     return aN === bN ? 0 : aN > bN ? 1 : -1;
+      // } else {
+      //     return aA > bA ? 1 : -1;
+      // }
+    // sortAlpha() {
+    //   return
+    // }
   },
   mounted() {
     axios
@@ -85,21 +106,21 @@ export default {
         return result
       // }
     },
-      phaseSearch: function () {
-      let result = this.elementFeed
-      let elementPhaseSearch = this.elementPhaseSearch
-      if (!elementPhaseSearch) {
-        return result
-      }
-      // const searchString = elementPhaseSearch.trim().toLowerCase()
-      console.log(elementPhaseSearch)
-      result = result.filter(function(item) {
-        if (item.standardState.toLowerCase().indexOf(elementPhaseSearch) !== -1) {
-          return item
-        }
-      }) 
-      return result
-    }
+    //   phaseSearch: function () {
+    //   let result = this.elementFeed
+    //   let elementPhaseSearch = this.elementPhaseSearch
+    //   if (!elementPhaseSearch) {
+    //     return result
+    //   }
+    //   // const searchString = elementPhaseSearch.trim().toLowerCase()
+    //   console.log(elementPhaseSearch)
+    //   result = result.filter(function(item) {
+    //     if (item.standardState.toLowerCase().indexOf(elementPhaseSearch) !== -1) {
+    //       return item
+    //     }
+    //   }) 
+    //   return result
+    // }
   }
 }
 </script>
